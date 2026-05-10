@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "title": "Complete Web Development Bootcamp",
+    "instructor": "John Doe",
+    "duration": "20 hours",
+    "rating": 4.8,
+    "level": "Beginner",
+    "description": "Learn full-stack web development from scratch.",
+    "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+    "category": "Development"
+  },
+  {
+    "id": 2,
+    "title": "Advanced UI/UX Design",
+    "instructor": "Jane Smith",
+    "duration": "15 hours",
+    "rating": 4.9,
+    "level": "Intermediate",
+    "description": "Master Figma and modern design principles.",
+    "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5",
+    "category": "Design"
+  },
+  {
+    "id": 3,
+    "title": "Digital Marketing Masterclass",
+    "instructor": "Sarah Wilson",
+    "duration": "12 hours",
+    "rating": 4.7,
+    "level": "Beginner",
+    "description": "Grow your brand with SEO and Social Media.",
+    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
+    "category": "Marketing"
+  },
+  {
+    "id": 4,
+    "title": "Python for Data Science",
+    "instructor": "Michael Chen",
+    "duration": "25 hours",
+    "rating": 4.6,
+    "level": "Beginner",
+    "description": "Analyze data and build models with Python.",
+    "image": "https://images.unsplash.com/photo-1551288049-bbbda5366391",
+    "category": "Development"
+  },
+  {
+    "id": 5,
+    "title": "Brand Identity Design",
+    "instructor": "Emma Davis",
+    "duration": "10 hours",
+    "rating": 4.5,
+    "level": "Intermediate",
+    "description": "Create memorable logos and brand guidelines.",
+    "image": "https://images.unsplash.com/photo-1572044162444-ad60f128bde2",
+    "category": "Design"
+  },
+  {
+    "id": 6,
+    "title": "Facebook Ads Mastery",
+    "instructor": "Robert Fox",
+    "duration": "8 hours",
+    "rating": 4.9,
+    "level": "Advanced",
+    "description": "The ultimate guide to high-converting ads.",
+    "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3",
+    "category": "Marketing"
+  }
+]
