@@ -26,10 +26,10 @@ const LearningTips = () => {
         }
     ]
     return (
-        <div className='container mx-auto bg-base-200'>
+        <div className='container mx-auto bg-base-100'>
             <div className='text-center mb-12'>
                 <div className='flex items-center justify-center gap-3 mt-4'>
-                <FaLightbulb className='text-3xl md:text-4xl font-bold'/>
+                <FaLightbulb className='text-3xl md:text-4xl font-bold text-yellow-300'/>
 
                 <h1 className='text-3xl md:text-4xl font-bold'> Learning Tips</h1>
                
@@ -42,11 +42,14 @@ const LearningTips = () => {
                 {tips.map((tip,index)=>(
                     <div key={index} className="card w-full bg-base-100 card-lg shadow-sm">
                     <div className="card-body">
-                        <h2 className="card-title">Large Card</h2>
-                        <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-                        <div className="justify-end card-actions">
-                        <button className="btn btn-primary">Buy Now</button>
-                        </div>
+                        <div className="flex items-center gap-3">
+                        <span className="text-2xl">{tip.icon}</span>
+                        <h2 className="card-title text-xl">{tip.title}</h2>
+                    </div>
+                    <p className="text-gray-600 mt-2">{tip.description}</p>
+
+                        
+                       
                     </div>
                     </div>
                 ))}
