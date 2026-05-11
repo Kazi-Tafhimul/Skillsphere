@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { motion } from 'motion/react';
+import { IoRocketSharp } from 'react-icons/io5';
 
 const Hero = () => {
     return (
