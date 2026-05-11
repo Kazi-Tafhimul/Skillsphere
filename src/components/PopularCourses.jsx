@@ -1,7 +1,10 @@
+"use client";
+
 import courses from "@/data/courses.json"
 import Image from "next/image";
 import Link from "next/link";
 import { CiStar } from "react-icons/ci";
+import { motion } from "motion/react";
 
 const PopularCourses = () => {
     const topRatedCourses = [...courses].sort((a,b)=>b.rating-a.rating).slice(0,3);
@@ -9,17 +12,42 @@ const PopularCourses = () => {
     return (
         <div className="py-16 bg-base-100">
             <div className="container mx-auto px4">
-                <div className="text-center mb-12">
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-12"
+                >
+                    
                     <h1 className="text3xl md:text-4xl font-bold">
                         Popular Courses
                     </h1>
                     <p className="text-gray-500 mt-2">
                         Explore our highly rated courses
                     </p>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                </motion.div>
+
+                
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={{
+                    hidden: { opacity: 0 },
+                    visible: {
+                    opacity: 1,
+                    transition: { staggerChildren: 0.2 } 
+            }
+          }}
+                 className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {topRatedCourses.map((course)=>(
-                        <div key={course.id} className="card bg-base-100 shadow-xl border border-base-200 overflow-hidden hover:shadow-2xl transition-shadow">
+                        <motion.div key={course.id}
+                        variants={{
+                        hidden: { opacity: 0, y: 30 },
+                        visible: { opacity: 1, y: 0 }
+                    }}
+                         className="card bg-base-100 shadow-xl border border-base-200 overflow-hidden hover:shadow-2xl transition-shadow">
                             <figure className="h-48">
                                 <Image src={course.image} alt={course.title} 
                                 width={500}
@@ -39,18 +67,20 @@ const PopularCourses = () => {
                                     <span className="font-bold">{course.rating}</span>
                                      <div className="card-actions justify-end">
 
-                                        <button className="btn btn-primary"><Link href={`/courses/$course.id`}></Link>View Detils</button>
+                                        <button className="btn btn-primary"><Link href={`/courses/${course.id}`}>View Detils</Link></button>
                                     </div>
                                     
                                 </div>
                             </div>
 
-                        </div>
+                       
+                        </motion.div>
                     ))}
+                    </motion.div>
                 </div>
             </div>
             
-        </div>
+        
     );
 };
 
