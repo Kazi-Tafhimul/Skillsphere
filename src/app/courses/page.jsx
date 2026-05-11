@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import courses from "@/data/courses.json";
+import { li } from "motion/react-client";
 
 const AllCoursePage = () => {
     const [searchQuery, SetSearchQuery] = useState("");
@@ -37,11 +38,35 @@ const AllCoursePage = () => {
             <path d="m21 21-4.3-4.3"></path>
             </g>
     </svg>
-        <input type="search" required placeholder="Search" />
+        <input type="search" required placeholder="Search"
+        value={searchQuery} 
+        onChange={(e)=>SetSearchQuery(e.target.value)}/>
         </label>
-                </div>
+             </div>
+        <details className="dropdown">
+        <summary className="btn m-1">Category:{selectedCategory}</summary>
+        <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+            {
+                categories.map((cat)=>(
+                    <li key={cat}>
+                        <button className={selectedCategory === cat ? "Active" :""}
+                        onClick={(e) =>{
+                            setSelectedCategory(cat);
+                            e.currentTarget.closest("details").removeAttribute("open");
+                        }}
+                        >
+                            {cat}
 
-            </div>
+                        </button>
+
+                    </li>
+                ))
+            }
+        </ul>
+        </details>
+
+        </div>
+
 
 
             
