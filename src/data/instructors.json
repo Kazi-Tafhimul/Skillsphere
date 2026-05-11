@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Dr. Sarah Johnson",
+    "role": "Senior Web Developer",
+    "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400",
+    "bio": "10+ years of experience in React and Next.js."
+  },
+  {
+    "id": 2,
+    "name": "Mark Tuan",
+    "role": "UI/UX Designer",
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400",
+    "bio": "Expert in creating accessible and beautiful user interfaces."
+  },
+  {
+    "id": 3,
+    "name": "Ayesha Malik",
+    "role": "Data Scientist",
+    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400",
+    "bio": "Passionate about teaching Python and Machine Learning."
+  }
+]

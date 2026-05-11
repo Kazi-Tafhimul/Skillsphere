@@ -2,6 +2,7 @@ import Image from "next/image";
 import Hero from "@/components/Hero.jsx"
 import PopularCourses from "@/components/PopularCourses";
 import LearningTips from "@/components/LearningTips";
+import Instructors from "@/components/Instructors";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <Hero></Hero>
       <PopularCourses></PopularCourses>
       <LearningTips></LearningTips>
+      <Instructors></Instructors>
       
 
     
