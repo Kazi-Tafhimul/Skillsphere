@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import courses from "@/data/courses.json";
-import { li } from "motion/react-client";
+
+import Image from "next/image";
+import Link from "next/link";
 
 const AllCoursePage = () => {
-    const [searchQuery, SetSearchQuery] = useState("");
+    const [searchQuery, setSearchQuery] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("All");
     const categories = ["All",...new Set(courses.map((c)=>c.category))];
     const filteredCourse = courses.filter((course)=>{
@@ -40,7 +42,7 @@ const AllCoursePage = () => {
     </svg>
         <input type="search" required placeholder="Search"
         value={searchQuery} 
-        onChange={(e)=>SetSearchQuery(e.target.value)}/>
+        onChange={(e)=>setSearchQuery(e.target.value)}/>
         </label>
              </div>
         <details className="dropdown">
@@ -49,7 +51,7 @@ const AllCoursePage = () => {
             {
                 categories.map((cat)=>(
                     <li key={cat}>
-                        <button className={selectedCategory === cat ? "Active" :""}
+                        <button className={selectedCategory === cat ? "active" :""}
                         onClick={(e) =>{
                             setSelectedCategory(cat);
                             e.currentTarget.closest("details").removeAttribute("open");
@@ -64,6 +66,35 @@ const AllCoursePage = () => {
             }
         </ul>
         </details>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+            {filteredCourse.map((course,id) => (
+                <div key={id} className="card bg-base-100  shadow-sm">
+                <figure className="h-48 relative">
+                    <Image 
+                    src={course.image}
+                    alt={course.title}
+                    height={300}
+                    width={300}
+                    className="object-cover"
+                    />
+                </figure>
+                <div className="card-body">
+                    <h2 className="card-title text-lg">{course.title}</h2>
+                    <p className="text-sm text-gray-500">Instructor: {course.instructor}</p>
+                    <p>{course.description}</p>
+                    <div className="card-actions justify-end">
+                    <Link href={`/courses/${course.id}`} className="btn btn-primary btn-sm">
+                    Details</Link>
+                    </div>
+                </div>
+                </div>
+            ))}
+        </div>
+        {filteredCourse.length===0 && (
+            <div className="text-center py-20 text-gray-400">
+                No courses found
+            </div>
+        )}
 
         </div>
 
