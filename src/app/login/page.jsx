@@ -1,11 +1,16 @@
 "use client";
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
+import { toast } from 'react-toastify';
 
 const LoginPage = () => {
+    const router = useRouter();
     const handleLogin = (e) =>{
         e.preventDefault();
+        toast.success("Welcome back to SkillSphere!");
+        router.push("/");
     };
     const handleGoogleLogin = () =>{
 

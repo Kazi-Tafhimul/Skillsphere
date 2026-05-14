@@ -1,11 +1,17 @@
 "use client";
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
+import { toast } from 'react-toastify';
 
 const RegistrationPage = () => {
+    const router = useRouter();
     const handleRegister = (e) =>{
         e.preventDefault();
+        toast.success("Registration successfull! Please log in.");
+        router.push("/login");
+        
     }
     const handleGoogleLogin = () =>{
 
