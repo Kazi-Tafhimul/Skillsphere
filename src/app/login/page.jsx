@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
@@ -7,13 +8,27 @@ import { toast } from 'react-toastify';
 
 const LoginPage = () => {
     const router = useRouter();
-    const handleLogin = (e) =>{
+    const handleLogin = async(e) =>{
         e.preventDefault();
-        toast.success("Welcome back to SkillSphere!");
-        router.push("/");
+        const email = e.target[0].value;
+        const password = e.target[1].value;
+        const {data,error} = await authClient.signIn.email({
+            email,
+            password,
+            callbackURL:"/",
+        }
+    )
+     if(error){
+                return toast.error(error.message || "Registration failed!");
+            }
+            toast.success("Registration successfull! Please log in.");
+            router.push("/login");
     };
-    const handleGoogleLogin = () =>{
-
+     const handleGoogleLogin = async () => {
+        await authClient.signIn.social({
+            provider: "google",
+            callbackURL: "/",
+        });
     }
     return (
         <div className='min-h-[80vh] flex items-center justify-center p-4'>
