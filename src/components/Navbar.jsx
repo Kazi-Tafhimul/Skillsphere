@@ -1,11 +1,19 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 
 
 const Navbar = () => {
     const pathName = usePathname();
-    const isLoggedIn = true;
+    const router = useRouter();
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const handleLogout = () =>{
+      setIsLoggedIn(false);
+      router.push("/");
+
+    }
+
     const isActive = (path) => pathName === path || (path != "/" && pathName.startsWith(path));
     return (
         <div>
@@ -45,7 +53,8 @@ const Navbar = () => {
   </div>
 </div>
             <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-              <li><button className="text-error">Logout</button></li>
+              <li><Link href="/my-profile">My Profile</Link></li>
+              <li><button onClick={handleLogout} className="text-error">Logout</button></li>
             </ul>
           </div>
         ) : (
