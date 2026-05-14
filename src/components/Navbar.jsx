@@ -1,8 +1,12 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 
 const Navbar = () => {
+    const pathName = usePathname();
     const isLoggedIn = true;
+    const isActive = (path) => pathName === path || (path != "/" && pathName.startsWith(path));
     return (
         <div>
             <div className="navbar bg-base-100 shadow-sm">
@@ -14,21 +18,22 @@ const Navbar = () => {
       <ul
         tabIndex="-1"
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li><Link href="/">Home</Link></li>
+        <li><Link href="/"
+        className={pathName === "/" ? "active text-primary font-bold text-blue-400 underline" : ""}>Home</Link></li>
         
-          <li><Link href="/courses">Courses</Link></li>
+          <li><Link href="/courses" className={pathName === "/courses" ? "active text-primary font-bold text-blue-400 underline" : ""}>Courses</Link></li>
          
         
-        {isLoggedIn && <li><Link href="/profile">My Profile</Link></li>}
+        {isLoggedIn && <li><Link href="/profile " className={pathName === "/profile" ? "active text-primary font-bold text-blue-400 underline" : ""}>My Profile</Link></li>}
       </ul>
     </div>
     <Link href="/" className="btn btn-ghost text-xl font-bold text-primary">SkillSphere</Link>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-      <li><Link href="/">Home</Link></li>
-      <li><Link href="/courses">Courses</Link></li>
-      {isLoggedIn && <li><Link href="/profile">My Profile</Link></li>}
+      <li><Link href="/" className={pathName === "/" ? "active text-primary font-bold text-blue-400 underline" : ""}>Home</Link></li>
+      <li><Link href="/courses" className={pathName === "/courses" ? "active text-primary font-bold text-blue-400 underline" : ""}>Courses</Link></li>
+      {isLoggedIn && <li><Link href="/profile" className={pathName === "/profile" ? "active text-primary font-bold text-blue-400 underline" : ""}>My Profile</Link></li>}
     </ul>
   </div>
   <div className="navbar-end gap-2">
