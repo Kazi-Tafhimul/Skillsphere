@@ -4,11 +4,35 @@ import courses from "@/data/courses.json";
 import Link from "next/link";
 import Image from "next/image";
 import { FaRegStar, FaStar } from "react-icons/fa";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
+
 
 
 const CourseDetailsPage = () => {
     const {id} = useParams();
+    const router = useRouter();
     const course = courses.find((c)=>c.id === parseInt(id));
+    const isLoggedIn = false;
+    useEffect(()=>{
+        if(!isLoggedIn){
+            toast.error("Please login to see the course details");
+            router.push("/login");
+        }
+    },[isLoggedIn,router]);
+    if(!isLoggedIn) return null;
+    if(!course){
+        return (
+            <div className="min-h-screen flex flex-col items-center justify-center">
+                <h1 className="text-2xl font-bold">
+                    Course not found
+                </h1>
+                <Link href="/courses" className="btn btn-primary mt-4">Back to Courses</Link>
+            </div>
+            
+        )
+    }
 
     return (
         <div className="container mx-auto px-4 py-12">

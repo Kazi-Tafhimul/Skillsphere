@@ -24,7 +24,7 @@ const Navbar = () => {
           <li><Link href="/courses" className={pathName === "/courses" ? "active text-primary font-bold text-blue-400 underline" : ""}>Courses</Link></li>
          
         
-        {isLoggedIn && <li><Link href="/profile " className={pathName === "/profile" ? "active text-primary font-bold text-blue-400 underline" : ""}>My Profile</Link></li>}
+        {isLoggedIn && <li><Link href="/my-profile " className={pathName === "/my-profile" ? "active text-primary font-bold text-blue-400 underline" : ""}>My Profile</Link></li>}
       </ul>
     </div>
     <Link href="/" className="btn btn-ghost text-xl font-bold text-primary">SkillSphere</Link>
@@ -33,7 +33,7 @@ const Navbar = () => {
     <ul className="menu menu-horizontal px-1">
       <li><Link href="/" className={pathName === "/" ? "active text-primary font-bold text-blue-400 underline" : ""}>Home</Link></li>
       <li><Link href="/courses" className={pathName === "/courses" ? "active text-primary font-bold text-blue-400 underline" : ""}>Courses</Link></li>
-      {isLoggedIn && <li><Link href="/profile" className={pathName === "/profile" ? "active text-primary font-bold text-blue-400 underline" : ""}>My Profile</Link></li>}
+      {isLoggedIn && <li><Link href="/my-profile" className={pathName === "/my-profile" ? "active text-primary font-bold text-blue-400 underline" : ""}>My Profile</Link></li>}
     </ul>
   </div>
   <div className="navbar-end gap-2">
@@ -41,7 +41,7 @@ const Navbar = () => {
           <div className="dropdown dropdown-end">
            <div tabIndex={0} role="button" className="avatar cursor-pointer">
   <div className="ring-primary ring-offset-base-100 w-12 rounded-full ring-2 ring-offset-2">
-    <img src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp" />
+    <img src="https://img.daisyui.com/images/my-profile/demo/spiderperson@192.webp" />
   </div>
 </div>
             <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
