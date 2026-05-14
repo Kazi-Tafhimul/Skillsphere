@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
@@ -7,15 +8,33 @@ import { toast } from 'react-toastify';
 
 const RegistrationPage = () => {
     const router = useRouter();
-    const handleRegister = (e) =>{
+    const handleRegister = async(e) =>{
         e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const name = e.target[0].value;
+        const email = e.target[1].value;
+        const image = e.target[2].value;
+        const password = e.target[3].value;
+        const {data,error} = await authClient.signUp.email({
+            name: name, // required
+            email: email, // required
+            password: password, // required
+            image: image,
+            callbackURL: "/",
+        })
+        if(error){
+            return toast.error(error.message || "Registration failed!");
+        }
         toast.success("Registration successfull! Please log in.");
         router.push("/login");
         
     }
-    const handleGoogleLogin = () =>{
-
-    }
+    const handleGoogleLogin = async () => {
+    await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/",
+    });
+};
     return (
          <div className='min-h-[80vh] flex items-center justify-center p-4'>
             <form onSubmit={handleRegister} className='fieldset bg-base-200 border-base-200 w-full max-w-sm rounded-box  border p-8 shadow-lg'>
