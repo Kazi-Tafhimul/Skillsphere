@@ -1,12 +1,29 @@
 "use client";
+import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { toast } from 'react-toastify';
 
 const UpdateProfile = () => {
     const router = useRouter();
-    const handleUpdate = (e) =>{
+    const {data:session} = authClient.useSession();
+    useEffect(() =>{
+        if(!session){
+            router.push("/login");
+        }
+    },[session,router]);
+    const handleUpdate = async(e) =>{
         e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const name = formData.get("name");
+        const image = formData.get("photo");
+        const {data, error} = await authClient.updateUser({
+            name:name,
+            image:image
+        });
+        if(error){
+            return toast.error("Update failed");
+        }
         toast.success("Information Updated!");
         router.push("/my-profile");
 
@@ -19,9 +36,9 @@ const UpdateProfile = () => {
                     Update Profile
                 </h1>
                 <label className='label'>Name</label>
-                <input name='name' type="text" className='input mb-4' required />
+                <input name='name' type="text" className='input mb-4' defaultValue={session?.user?.name} required />
                 <label className='label'>Image URL</label>
-                <input name='photo' type="url" className='input mb-4' required />
+                <input name='photo' type="url" className='input mb-4' defaultValue={session?.user?.image} required />
                 <button className='btn btn-primary'>Update Information</button>
             </form>
             

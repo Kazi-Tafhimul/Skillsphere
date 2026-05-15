@@ -7,6 +7,7 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
+import { authClient } from "@/lib/auth-client";
 
 
 
@@ -14,14 +15,14 @@ const CourseDetailsPage = () => {
     const {id} = useParams();
     const router = useRouter();
     const course = courses.find((c)=>c.id === parseInt(id));
-    const isLoggedIn = false;
+    const {data:session} = authClient.useSession();
     useEffect(()=>{
-        if(!isLoggedIn){
+        if(!session){
             toast.error("Please login to see the course details");
             router.push("/login");
         }
-    },[isLoggedIn,router]);
-    if(!isLoggedIn) return null;
+    },[session,router]);
+    if(!session) return null;
     if(!course){
         return (
             <div className="min-h-screen flex flex-col items-center justify-center">
